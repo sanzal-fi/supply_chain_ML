@@ -1,0 +1,525 @@
+feature,importance
+Shipping Mode_First Class,0.13733633
+Shipping Mode_Standard Class,0.11761529
+Days for shipment (scheduled),0.10821627
+Shipping Mode_Same Day,0.042559035
+Shipping Mode_Second Class,0.022495229
+Order State_Illinois,0.0034046925
+Order Region_Southern Africa,0.0030613437
+Order Country_Cuba,0.0029884467
+Order Country_Pakistán,0.0028688353
+Order Country_China,0.0026601716
+Order City_Tegucigalpa,0.00262573
+Order Region_Canada,0.0025400014
+Order State_Aquitania-Lemosín-Poitou-Charentes,0.0024763
+Order Region_West Africa,0.002461602
+Order State_Guatemala,0.0023745908
+Order City_Seattle,0.0023652539
+Customer City_Bakersfield,0.0022890288
+Order Region_Southern Europe,0.002258302
+Order State_Nueva York,0.002250021
+Order State_Cortés,0.002240774
+Order Country_República Democrática del Congo,0.0022121766
+Order Country_Italia,0.002207324
+Order Region_Northern Europe,0.002206414
+Order Country_México,0.00219559
+Category Name_Books ,0.002188461
+Customer State_KY,0.00218385
+Order Country_Egipto,0.0021826783
+Customer City_San Francisco,0.0021711572
+Customer City_Virginia Beach,0.0021700268
+Order Country_Marruecos,0.0021683737
+Order Region_South Asia,0.0021460801
+Order State_Jalisco,0.0021010286
+Order State_Viena,0.0020941147
+Order State_Florida,0.002091771
+Order Country_Chile,0.0020834731
+Order City_Philadelphia,0.0020813225
+Order Region_Oceania,0.0020788442
+Order City_Los Angeles,0.002074519
+Customer City_Philadelphia,0.0020738472
+Order City_Puebla,0.0020685338
+Order State_Panamá,0.0020681613
+Customer City_Atlanta,0.002066143
+Order State_Alsacia-Champaña-Ardenas-Lorena,0.0020652518
+Order State_Provenza-Alpes-Costa Azul,0.002051086
+Order State_Inglaterra,0.002043271
+Order Country_Suecia,0.0020425334
+Order State_Lagos,0.0020384744
+Order Country_Vietnam,0.0020350758
+Order Country_Argentina,0.002031963
+Order City_San Salvador,0.0020309081
+Order State_Texas,0.0020139078
+Order State_Queensland,0.0020138
+Order Country_El Salvador,0.0020097648
+Order City_Ho Chi Minh City,0.0019981768
+Order Country_Venezuela,0.0019976452
+Order City_Estocolmo,0.0019970378
+Customer State_CO,0.001988678
+Order State_Santiago de Chile,0.001984863
+Order City_Brisbane,0.0019827865
+Order City_Santo Domingo,0.0019816766
+Order State_Victoria,0.0019787683
+Order City_San Miguelito,0.0019640042
+Order State_Norte-Paso de Calais-Picardía,0.0019589944
+Order Country_Guatemala,0.0019549623
+Order City_Berlín,0.0019499005
+Order State_San Salvador,0.0019453784
+Order State_Ohio,0.0019279082
+Order State_Francisco Morazán,0.0019274439
+Order Region_West of USA ,0.0019270543
+Customer State_NJ,0.0019258419
+Customer State_NV,0.0019255062
+Customer City_Caguas,0.0019234099
+Customer City_Bronx,0.0019175982
+Category Name_Golf Shoes,0.0019166023
+Order State_Nueva Gales del Sur,0.0019163805
+Order City_San Francisco,0.0019153451
+Order State_Distrito Federal,0.0019102966
+Order City_Soyapango,0.0019077924
+Order City_Mixco,0.001906355
+Order Region_West Asia,0.0018998543
+Customer State_MA,0.0018929287
+Order Country_Other,0.0018873586
+Order City_Panama City,0.0018859048
+Order Country_Brasil,0.0018734494
+Order City_Melbourne,0.0018724027
+Order State_Santo Domingo,0.0018573548
+Order Region_Eastern Europe,0.0018548174
+Order Country_Honduras,0.0018540742
+Order City_Lagos,0.0018531614
+Customer City_Corona,0.0018524661
+Order City_London,0.0018484727
+Order State_Guangdong,0.0018472632
+Customer State_WI,0.0018446002
+Customer City_Sacramento,0.0018434987
+Order State_Guanajuato,0.0018365338
+Customer State_HI,0.0018356423
+Order City_Chicago,0.0018333985
+Customer City_Tucson,0.0018308026
+Order City_Buenos Aires,0.0018288671
+Order State_Lacio,0.0018280959
+Order State_Languedoc-Rosellón-Mediodía-Pirineos,0.0018268187
+Customer State_TN,0.0018219479
+Order Region_Central Asia,0.0018213596
+Customer State_TX,0.0018209339
+Order Country_SudAfrica,0.0018161894
+Order State_Bavaria,0.0018153099
+Customer City_Miami,0.001805289
+Order Country_Irak,0.0018047283
+Order City_Bangkok,0.0018024773
+Order State_Santiago de Cuba,0.0017989876
+Order State_São Paulo,0.0017966805
+Order Country_Arabia Saudí,0.0017965133
+Order Region_Central America,0.0017933617
+Order City_Houston,0.001792683
+Customer State_OH,0.0017892701
+Order Country_Rusia,0.0017870719
+Order Country_Irán,0.001784169
+Order Region_South America,0.0017825419
+Customer City_Newark,0.0017780062
+Order Country_Reino Unido,0.0017741474
+Order City_Rome,0.0017650496
+Order Country_España,0.0017609698
+Customer City_Aurora,0.0017587477
+Order Country_Nicaragua,0.0017578256
+Order City_San Pedro Sula,0.0017548008
+Order Country_Turquía,0.0017511845
+Order City_Viena,0.001745202
+Customer City_Cleveland,0.0017410741
+Order Country_Austria,0.0017405029
+Customer State_GA,0.0017390526
+Order Country_Polonia,0.0017364867
+Customer State_SC,0.0017331573
+Customer State_PA,0.0017287297
+Customer City_San Antonio,0.0017236687
+Customer State_UT,0.0017235257
+Order City_Villa Nueva,0.001721184
+Order Country_Australia,0.001717929
+Order Country_Panamá,0.0017171493
+Customer City_Portland,0.0017048228
+Department Name_Technology,0.0016996944
+Order Country_Nigeria,0.0016982091
+Order Country_Nueva Zelanda,0.0016959613
+Customer City_Las Vegas,0.0016928258
+Customer State_OK,0.0016890274
+Order Country_Perú,0.0016839836
+Order Country_Francia,0.0016764664
+Order City_Managua,0.001676123
+Customer State_NM,0.0016754878
+Order Region_South of  USA ,0.0016742982
+Order Region_Caribbean,0.0016718683
+Order City_Hamburgo,0.0016716291
+Order State_Baden-Wurtemberg,0.0016698586
+Order State_Java Occidental,0.0016640844
+Order Country_Canada,0.0016630003
+Order City_Estambul,0.0016596371
+Order Country_Colombia,0.0016579777
+Order Region_East Africa,0.0016569877
+Department Name_Footwear,0.0016527456
+Customer City_Hialeah,0.0016513182
+Order City_Manila,0.0016503701
+Customer State_CA,0.0016500547
+Customer State_AZ,0.0016500482
+Order Zipcode,0.0016485088
+Customer City_El Paso,0.0016445324
+Order Region_US Center ,0.001639155
+Customer City_San Diego,0.001634201
+Customer State_VA,0.001633143
+Order City_Santiago de Cuba,0.0016210303
+Order City_Perth,0.0016184988
+Longitude,0.0016160556
+Customer City_Lancaster,0.0016156678
+Order State_Buenos Aires,0.0016149455
+Order Region_North Africa,0.0016141653
+Customer Segment_Home Office,0.0016123209
+Customer Segment_Corporate,0.0016110984
+Customer City_Ontario,0.0016058724
+Order Country_República Dominicana,0.0016030018
+Customer State_MD,0.0016014143
+Order State_México,0.0015937896
+Product Name_Diamondback Women's Serene Classic Comfort Bi,0.0015926105
+Customer Zipcode,0.0015919636
+Customer City_Brooklyn,0.0015915392
+Latitude,0.0015798765
+Customer State_MT,0.0015779812
+Order State_Renania del Norte-Westfalia,0.0015764459
+Order City_Guadalajara,0.0015687522
+Customer State_NY,0.0015682089
+Customer City_Orlando,0.0015656216
+Customer City_Los Angeles,0.0015610805
+Type_CASH,0.0015475068
+Customer City_Chicago,0.001546412
+Customer City_Escondido,0.0015414681
+Customer State_CT,0.0015396256
+Market_USCA,0.0015352233
+Customer State_FL,0.0015327241
+Department Name_Discs Shop,0.0015307677
+Order State_Madrid,0.0015281109
+Order State_Pensilvania,0.0015249219
+Order Region_Central Africa,0.0015223183
+Order City_Columbus,0.0015118172
+Order State_Australia Occidental,0.0015078918
+Customer State_AR,0.0015065413
+Order Region_Eastern Asia,0.0015042097
+Category Name_Pet Supplies,0.0014966576
+Customer City_Santa Ana,0.0014934042
+Product Name_Team Golf St. Louis Cardinals Putter Grip,0.0014929399
+Order City_Paris,0.0014887798
+Order State_Other,0.001486576
+Order State_Managua,0.0014818624
+Order Country_Estados Unidos,0.0014784414
+Customer City_Honolulu,0.0014783207
+Category Name_Cardio Equipment,0.0014763678
+Order State_California,0.0014735278
+Order Region_Southeast Asia,0.0014728099
+Customer State_MI,0.0014710141
+Market_Africa,0.0014701828
+Order Region_East of USA,0.0014689506
+Customer City_New Orleans,0.0014678425
+Type_DEBIT,0.0014655538
+Customer State_LA,0.0014654809
+Order City_Gold Coast,0.0014570643
+Type_PAYMENT,0.0014564209
+Category Name_Girls' Apparel,0.0014539728
+Customer State_MO,0.0014330851
+Type_TRANSFER,0.0014325655
+Customer City_Riverside,0.0014290572
+Category Name_Golf Gloves,0.001425694
+Customer State_RI,0.0014156096
+Product Name_Children's heaters,0.001408183
+order date (DateOrders)_9/26/2015 7:19,0.001407203
+Customer City_Baltimore,0.0014038237
+Customer State_KS,0.0014035166
+Order Country_Malasia,0.0014021379
+Market_LATAM,0.0013953852
+Customer City_New York,0.0013918739
+Order Country_India,0.001390853
+Order State_Auvernia-Ródano-Alpes,0.0013876581
+Order City_Yakarta,0.0013876015
+Order City_New York City,0.0013788701
+Order City_Bogotá,0.0013769971
+Order City_Cairo,0.001374552
+Customer State_IL,0.0013734314
+Order City_Other,0.0013697325
+Customer Segment_Consumer,0.0013675148
+Customer City_Fort Worth,0.0013572386
+Customer City_Albuquerque,0.0013506002
+Customer City_San Jose,0.0013497549
+Customer City_Detroit,0.0013490982
+Order City_Mexico City,0.0013485383
+Order Country_Países Bajos,0.0013447771
+Order City_León,0.0013374013
+Order Region_Western Europe,0.0013323663
+Order State_Maharashtra,0.0013244966
+Order Country_Haití,0.0013242682
+Order City_São Paulo,0.0013184082
+Order State_Capital Nacional,0.0013135808
+Customer State_OR,0.001312323
+Customer City_Fort Lauderdale,0.0013111262
+Order Country_Alemania,0.0013064103
+Product Name_Team Golf Texas Longhorns Putter Grip,0.0013014402
+Department Id,0.0012981675
+Product Name_TYR Boys' Team Digi Jammer,0.0012926268
+Order Country_Tailandia,0.0012913026
+Market_Europe,0.0012862147
+shipping date (DateOrders)_Other,0.0012749028
+Category Name_Golf Bags & Carts,0.0012704578
+Order City_Sydney,0.0012694377
+Order Country_Filipinas,0.0012691038
+Category Name_Accessories,0.0012623299
+Order City_Kinshasa,0.0012611045
+Customer State_NC,0.0012494068
+Customer City_Houston,0.001246432
+Order Country_Japón,0.0012456558
+Order State_Washington,0.0012436822
+Customer City_Tempe,0.0012298268
+Customer City_Other,0.0012262036
+Order Country_Bélgica,0.0012260046
+Market_Pacific Asia,0.0012218837
+Order State_Estambul,0.0012212872
+Customer City_Long Beach,0.0012203158
+order date (DateOrders)_Other,0.0012172582
+Customer City_Dallas,0.0012145092
+Customer City_Phoenix,0.0012044059
+Customer City_Saint Louis,0.0012011363
+Order State_Isla de Francia,0.0011988076
+Customer City_Columbus,0.0011980345
+Order Country_Indonesia,0.0011935002
+Customer State_DE,0.0011918797
+Product Name_Web Camera,0.0011893621
+Category Name_Baseball & Softball,0.0011884852
+Customer State_IN,0.0011755599
+Category Name_Lacrosse,0.0011749866
+Sales,0.0011696145
+Category Name_Water Sports,0.0011640831
+Category Name_Consumer Electronics,0.0011482761
+Category Name_Hunting & Shooting,0.0011443641
+Customer City_Memphis,0.0011275661
+Order Item Total,0.0011223047
+Product Name_adidas Men's F10 Messi TRX FG Soccer Cleat,0.0011216452
+Product Name_ENO Atlas Hammock Straps,0.0011130789
+Order City_Juárez,0.0011125422
+Product Name_LIJA Women's Eyelet Sleeveless Golf Polo,0.0010999793
+Order Profit Per Order,0.0010999187
+Product Name_Perfect Fitness Perfect Rip Deck,0.0010900781
+Product Name_Nike Men's Free 5.0+ Running Shoe,0.0010852868
+Category Name_Sporting Goods,0.0010844702
+Product Name_DVDs ,0.0010588688
+Product Name_Team Golf Pittsburgh Steelers Putter Grip,0.0010566857
+Customer City_Saint Paul,0.0010564713
+Category Name_Golf Apparel,0.0010546107
+Category Name_Men's Golf Clubs,0.00105216
+Department Name_Outdoors,0.0010493578
+Product Name_Nike Dri-FIT Crew Sock 6 Pack,0.0010482961
+Product Name_Glove It Urban Brick Golf Towel,0.0010456607
+Product Name_Under Armour Girls' Toddler Spine Surge Runni,0.0010429684
+Category Name_Computers,0.0010358222
+Category Name_Electronics,0.0010353798
+Product Name_Under Armour Women's Ignite Slide,0.0010340124
+Customer State_AL,0.0010241071
+Customer City_Fresno,0.0010138944
+Department Name_Fan Shop,0.0010007271
+Order City_Lima,0.0009950653
+Customer City_Washington,0.0009863906
+Product Name_Team Golf Tennessee Volunteers Putter Grip,0.0009801176
+Order Item Quantity,0.0009750399
+Category Id,0.0009741733
+Department Name_Apparel,0.00097242603
+Order Item Discount,0.0009624417
+Category Name_Garden,0.0009610161
+Order Item Profit Ratio,0.00095301995
+Category Name_Cleats,0.0009447622
+Product Price,0.00093468203
+Customer State_ID,0.0009243265
+Category Name_Men's Footwear,0.0009180421
+Category Name_Shop By Sport,0.00091060397
+Benefit per order,0.0009066977
+Order Country_Ucrania,0.0009040145
+Product Name_Columbia Men's PFG Anchor Tough T-Shirt,0.0008931995
+Product Name_Hirzl Women's Soffft Flex Golf Glove,0.00089043117
+Sales per customer,0.0008885766
+Category Name_As Seen on  TV!,0.00088726747
+Order Item Product Price,0.0008824415
+Category Name_Kids' Golf Clubs,0.0008781237
+Order Item Discount Rate,0.0008739034
+Category Name_Music,0.00087207794
+Product Name_Nike Men's Deutschland Weltmeister Winners Bl,0.0008708221
+Customer State_IA,0.0008681308
+Category Name_Women's Apparel,0.00086463516
+Category Name_Camping & Hiking,0.00085983967
+Customer State_ND,0.0008486729
+Product Name_Other,0.0008448862
+Product Name_Field & Stream Sportsman 16 Gun Fire Safe,0.0008308171
+Product Name_adidas Youth Germany Black/Red Away Match Soc,0.0008252353
+Order Country_Corea del Sur,0.0008232109
+Category Name_Women's Golf Clubs,0.0008221316
+Product Name_O'Brien Men's Neoprene Life Vest,0.00081697816
+Customer State_WV,0.00081285555
+Category Name_Indoor/Outdoor Games,0.00081280153
+Order City_Madrid,0.0008070765
+Category Name_Video Games,0.0007778501
+Category Name_Cameras ,0.0007751073
+Category Name_Toys,0.0007728891
+Order City_Marseille,0.00077084586
+Product Name_Under Armour Hustle Storm Medium Duffle Bag,0.00077033835
+Category Name_Hockey,0.0007626204
+Product Name_Glove It Women's Imperial Golf Glove,0.0007449759
+Department Name_Golf,0.0007271708
+shipping date (DateOrders)_8/31/2015 12:58,0.0007148584
+Category Name_DVDs,0.00070161885
+Category Name_Golf Balls,0.000675727
+Department Name_Pet Shop,0.000654489
+Product Name_Nike Women's Tempo Shorts,0.0006335455
+order date (DateOrders)_4/8/2015 20:21,0.00062282925
+Product Name_Top Flite Women's 2014 XL Hybrid,0.0006196515
+Product Name_Pelican Sunstream 100 Kayak,0.0006167665
+Category Name_Men's Clothing,0.0006060382
+Customer Country_EE. UU.,0.0006033074
+order date (DateOrders)_2/12/2016 11:10,0.00060293905
+order date (DateOrders)_4/9/2015 8:37,0.0005842881
+order date (DateOrders)_2/17/2016 14:08,0.0005799578
+Category Name_Trade-In,0.0005710159
+shipping date (DateOrders)_12/26/2016 6:52,0.0005600375
+order date (DateOrders)_4/9/2015 6:52,0.00054811896
+Product Name_Nike Men's CJ Elite 2 TD Football Cleat,0.00054713176
+Category Name_Fishing,0.000390545
+Product Name_Nike Men's Dri-FIT Victory Golf Polo,9.778295e-05
+shipping date (DateOrders)_10/6/2016 16:58,0.0
+shipping date (DateOrders)_2/11/2017 3:28,0.0
+shipping date (DateOrders)_10/9/2015 7:29,0.0
+shipping date (DateOrders)_11/6/2015 23:55,0.0
+shipping date (DateOrders)_12/16/2015 2:50,0.0
+shipping date (DateOrders)_1/5/2016 5:58,0.0
+shipping date (DateOrders)_10/25/2016 23:46,0.0
+shipping date (DateOrders)_12/9/2015 9:41,0.0
+shipping date (DateOrders)_10/16/2015 11:09,0.0
+shipping date (DateOrders)_2/1/2015 2:35,0.0
+Product Name_Toys ,0.0
+shipping date (DateOrders)_1/22/2017 7:21,0.0
+order date (DateOrders)_8/16/2016 23:10,0.0
+order date (DateOrders)_8/24/2016 19:39,0.0
+Department Name_Health and Beauty ,0.0
+shipping date (DateOrders)_2/20/2016 11:09,0.0
+Product Name_Titleist Pro V1x High Numbers Personalized Go,0.0
+Department Name_Fitness,0.0
+Department Name_Book Shop,0.0
+order date (DateOrders)_8/31/2016 22:37,0.0
+order date (DateOrders)_8/5/2015 5:18,0.0
+Product Name_Summer dresses,0.0
+Product Name_Sports Books ,0.0
+Product Name_Smart watch ,0.0
+shipping date (DateOrders)_2/12/2016 18:52,0.0
+order date (DateOrders)_3/9/2015 14:26,0.0
+shipping date (DateOrders)_2/5/2016 15:12,0.0
+shipping date (DateOrders)_7/9/2017 21:50,0.0
+shipping date (DateOrders)_6/2/2017 9:27,0.0
+shipping date (DateOrders)_6/23/2017 4:20,0.0
+shipping date (DateOrders)_6/5/2017 12:25,0.0
+shipping date (DateOrders)_7/15/2017 10:58,0.0
+shipping date (DateOrders)_7/16/2015 10:14,0.0
+shipping date (DateOrders)_7/5/2017 10:59,0.0
+shipping date (DateOrders)_7/9/2015 7:58,0.0
+shipping date (DateOrders)_8/22/2017 2:30,0.0
+shipping date (DateOrders)_3/12/2015 15:40,0.0
+shipping date (DateOrders)_8/25/2015 13:41,0.0
+shipping date (DateOrders)_8/7/2016 20:33,0.0
+shipping date (DateOrders)_9/10/2015 20:19,0.0
+shipping date (DateOrders)_9/11/2016 4:13,0.0
+shipping date (DateOrders)_9/16/2015 16:27,0.0
+shipping date (DateOrders)_9/27/2015 20:28,0.0
+order date (DateOrders)_5/4/2016 11:45,0.0
+shipping date (DateOrders)_5/9/2015 18:02,0.0
+shipping date (DateOrders)_5/8/2015 2:06,0.0
+shipping date (DateOrders)_5/28/2016 9:58,0.0
+shipping date (DateOrders)_5/27/2015 6:48,0.0
+shipping date (DateOrders)_3/13/2016 5:10,0.0
+shipping date (DateOrders)_3/13/2017 3:26,0.0
+shipping date (DateOrders)_3/16/2016 3:14,0.0
+shipping date (DateOrders)_3/21/2017 14:59,0.0
+shipping date (DateOrders)_3/31/2017 19:52,0.0
+shipping date (DateOrders)_3/9/2017 20:36,0.0
+Product Name_Porcelain crafts,0.0
+shipping date (DateOrders)_4/14/2017 4:26,0.0
+shipping date (DateOrders)_4/17/2015 22:16,0.0
+shipping date (DateOrders)_4/24/2016 2:18,0.0
+shipping date (DateOrders)_4/24/2017 3:01,0.0
+shipping date (DateOrders)_4/27/2016 9:08,0.0
+shipping date (DateOrders)_4/3/2016 9:10,0.0
+shipping date (DateOrders)_5/20/2015 6:17,0.0
+shipping date (DateOrders)_5/21/2015 15:55,0.0
+Product Name_Rock music,0.0
+order date (DateOrders)_9/22/2015 3:50,0.0
+Customer State_WA,0.0
+Category Name_Basketball,0.0
+order date (DateOrders)_12/27/2015 19:27,0.0
+order date (DateOrders)_4/7/2016 14:04,0.0
+order date (DateOrders)_12/23/2015 23:40,0.0
+Category Name_Health and Beauty,0.0
+order date (DateOrders)_12/15/2015 5:07,0.0
+order date (DateOrders)_12/14/2016 17:02,0.0
+order date (DateOrders)_12/14/2016 12:29,0.0
+order date (DateOrders)_4/8/2015 11:36,0.0
+Category Name_Fitness Accessories,0.0
+order date (DateOrders)_12/13/2015 10:01,0.0
+Category Name_Crafts,0.0
+order date (DateOrders)_11/21/2016 1:29,0.0
+order date (DateOrders)_10/4/2015 11:10,0.0
+Category Name_Children's Clothing,0.0
+Category Name_CDs ,0.0
+order date (DateOrders)_12/31/2016 9:50,0.0
+order date (DateOrders)_4/25/2016 14:44,0.0
+order date (DateOrders)_12/8/2015 17:54,0.0
+Category Name_Tennis & Racquet,0.0
+order date (DateOrders)_2/9/2016 14:08,0.0
+order date (DateOrders)_2/6/2016 20:17,0.0
+order date (DateOrders)_2/6/2016 12:13,0.0
+order date (DateOrders)_2/22/2015 14:38,0.0
+Category Name_Women's Clothing,0.0
+order date (DateOrders)_4/10/2015 1:26,0.0
+Category Name_Strength Training,0.0
+order date (DateOrders)_2/10/2016 12:34,0.0
+order date (DateOrders)_2/11/2016 16:35,0.0
+Category Name_Soccer,0.0
+Order State_Bangkok,0.0
+order date (DateOrders)_4/23/2015 20:09,0.0
+Order State_Berlín,0.0
+Customer City_Pompano Beach,0.0
+Category Name_Boxing & MMA,0.0
+order date (DateOrders)_10/3/2016 8:23,0.0
+order date (DateOrders)_9/17/2016 14:42,0.0
+Category Name_Baby ,0.0
+order date (DateOrders)_9/26/2015 19:56,0.0
+Product Name_Fighting video games,0.0
+Product Name_First aid kit,0.0
+Product Name_Glove It Imperial Golf Towel,0.0
+order date (DateOrders)_9/24/2015 18:32,0.0
+Product Name_Glove It Women's Mod Oval 3-Zip Carry All Gol,0.0
+Product Name_Hirzl Women's Hybrid Golf Glove,0.0
+order date (DateOrders)_9/23/2015 18:22,0.0
+Product Name_Industrial consumer electronics,0.0
+Customer State_MN,0.0
+Product Name_Lawn mower,0.0
+order date (DateOrders)_3/19/2016 15:40,0.0
+Product Name_Nike Men's Comfort 2 Slide,0.0
+order date (DateOrders)_9/20/2016 22:56,0.0
+Customer State_PR,0.0
+Customer State_95758,0.0
+Product Name_Dell Laptop,0.0
+order date (DateOrders)_9/27/2015 20:49,0.0
+order date (DateOrders)_10/13/2015 17:38,0.0
+Customer Country_Puerto Rico,0.0
+order date (DateOrders)_10/27/2016 6:57,0.0
+Product Status,0.0
+Customer State_91732,0.0
+order date (DateOrders)_10/22/2016 16:56,0.0
+order date (DateOrders)_10/17/2016 2:24,0.0
+order date (DateOrders)_1/31/2016 2:46,0.0
+order date (DateOrders)_9/30/2017 7:52,0.0
+Customer State_DC,0.0
+Order State_Yakarta,0.0
+Product Name_Adult dog supplies,0.0
+Product Name_Bridgestone e6 Straight Distance NFL Carolina,0.0
+Product Name_Bridgestone e6 Straight Distance NFL San Dieg,0.0
+order date (DateOrders)_4/9/2015 10:01,0.0
+order date (DateOrders)_4/9/2015 19:49,0.0
