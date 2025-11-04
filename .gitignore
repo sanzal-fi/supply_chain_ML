@@ -1,3 +1,4 @@
 **/*.csv
+!DataCoSupplyChainDataset.csv
 **/*.pkl
 **/*.json
