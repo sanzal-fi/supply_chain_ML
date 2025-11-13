@@ -14,7 +14,7 @@ import numpy as np
 import joblib
 import json
 from sklearn.svm import SVC
-from sklearn.model_selection import GridSearchCV, StratifiedKFold
+from sklearn.model_selection import GridSearchCV, StratifiedKFold, RandomizedSearchCV
 from sklearn.metrics import classification_report, confusion_matrix
 import os
 import warnings
@@ -42,14 +42,15 @@ def load_processed_data(data_dir='data/processed'):
     
     return X_train, X_test, y_train, y_test
 
-def optimize_svm_hyperparameters(X_train, y_train, cv_folds=5, random_state=42):
+def optimize_svm_hyperparameters(X_train, y_train, cv_folds=3, n_iter=20, random_state=42):
     """
-    Optimizar hiperparámetros del modelo SVM usando GridSearchCV.
+    Optimizar hiperparámetros del modelo SVM usando RandomizedSearchCV.
     
     Args:
         X_train: Características de entrenamiento
         y_train: Variable objetivo de entrenamiento
         cv_folds (int): Número de folds para validación cruzada
+        n_iter (int): Número de iteraciones para búsqueda aleatoria
         random_state (int): Semilla para reproducibilidad
         
     Returns:
@@ -57,11 +58,11 @@ def optimize_svm_hyperparameters(X_train, y_train, cv_folds=5, random_state=42):
     """
     print("Optimizando hiperparámetros para SVM...")
     
-    # Definir parámetros para búsqueda
-    param_grid = {
+    # Definir distribución de parámetros para búsqueda aleatoria
+    param_distributions = {
         'C': [0.1, 1, 10, 100],
         'kernel': ['linear', 'rbf', 'poly'],
-        'gamma': ['scale', 'auto', 0.1, 0.01]
+        'gamma': ['scale', 'auto', 0.1, 0.01, 0.001]
     }
     
     # Crear modelo base
@@ -70,29 +71,31 @@ def optimize_svm_hyperparameters(X_train, y_train, cv_folds=5, random_state=42):
     # Configurar validación cruzada estratificada
     cv = StratifiedKFold(n_splits=cv_folds, shuffle=True, random_state=random_state)
     
-    # Configurar GridSearchCV
-    grid_search = GridSearchCV(
+    # Configurar RandomizedSearchCV (mucho más rápido que GridSearchCV)
+    random_search = RandomizedSearchCV(
         estimator=svm,
-        param_grid=param_grid,
+        param_distributions=param_distributions,
+        n_iter=n_iter,  # Solo prueba 20 combinaciones aleatorias
         cv=cv,
         scoring='f1',
-        n_jobs=-1,
+        n_jobs=1,
+        random_state=random_state,
         verbose=1
     )
     
     # Ejecutar búsqueda
-    print("Ejecutando búsqueda de hiperparámetros...")
-    grid_search.fit(X_train, y_train)
+    print("Ejecutando búsqueda aleatoria de hiperparámetros...")
+    random_search.fit(X_train, y_train)
     
     # Mostrar resultados
-    print(f"Mejor puntuación F1: {grid_search.best_score_:.4f}")
+    print(f"Mejor puntuación F1: {random_search.best_score_:.4f}")
     print("Mejores hiperparámetros:")
-    for param, value in grid_search.best_params_.items():
+    for param, value in random_search.best_params_.items():
         print(f"  {param}: {value}")
     
-    return grid_search.best_params_, grid_search.best_score_
+    return random_search.best_params_, random_search.best_score_
 
-def train_svm_model(X_train, y_train, best_params):
+def train_svm_model(X_train, y_train, best_params, random_state=42):
     """
     Entrenar el modelo SVM con los mejores hiperparámetros.
     
@@ -100,6 +103,7 @@ def train_svm_model(X_train, y_train, best_params):
         X_train: Características de entrenamiento
         y_train: Variable objetivo de entrenamiento
         best_params (dict): Mejores hiperparámetros
+        random_state (int): Semilla para reproducibilidad
         
     Returns:
         SVC: Modelo entrenado
@@ -108,6 +112,8 @@ def train_svm_model(X_train, y_train, best_params):
     
     # Crear modelo con mejores parámetros
     svm_model = SVC(**best_params)
+    if 'random_state' not in best_params:
+        svm_model.set_params(random_state=random_state)
     
     # Entrenar modelo
     svm_model.fit(X_train, y_train)
@@ -208,7 +214,14 @@ def main():
     X_train, X_test, y_train, y_test = load_processed_data()
     
     # 2. Optimizar hiperparámetros
-    best_params, best_score = optimize_svm_hyperparameters(X_train, y_train)
+    if len(X_train) > 10000:
+        print(f"Dataset grande ({len(X_train)} muestras). Muestreando para SVM...")
+        sample_size = 10000
+        X_train_sample = X_train.sample(n=sample_size, random_state=42)
+        y_train_sample = y_train.loc[X_train_sample.index]
+        best_params, best_score = optimize_svm_hyperparameters(X_train_sample, y_train_sample)
+    else:
+        best_params, best_score = optimize_svm_hyperparameters(X_train, y_train)
     
     # 3. Entrenar modelo con mejores parámetros
     svm_model = train_svm_model(X_train, y_train, best_params)
