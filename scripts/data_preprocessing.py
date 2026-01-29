@@ -33,25 +33,37 @@ def load_data(file_path):
     
     # Lista de codificaciones comunes a probar
     encodings = ['utf-8', 'latin-1', 'iso-8859-1', 'cp1252', 'utf-16']
+    separators = [',', ';']
     
     df = None
-    for encoding in encodings:
-        try:
-            print(f"Probando codificación: {encoding}")
-            df = pd.read_csv(file_path, encoding=encoding)
-            print(f"✅ Éxito con codificación: {encoding}")
+    for sep in separators:
+        for encoding in encodings:
+            try:
+                print(f"Probando separador '{sep}' y codificación '{encoding}'")
+                # Intentar leer con el separador y codificación actuales
+                # Si el separador es ';', es probable que la primera columna sea el índice
+                if sep == ';':
+                    temp_df = pd.read_csv(file_path, sep=sep, encoding=encoding, index_col=0)
+                else:
+                    temp_df = pd.read_csv(file_path, sep=sep, encoding=encoding)
+                
+                # Verificar si se cargaron columnas correctamente (más de 1 columna)
+                if temp_df.shape[1] > 1:
+                    df = temp_df
+                    print(f"✅ Éxito con separador '{sep}' y codificación '{encoding}'")
+                    break
+            except UnicodeDecodeError:
+                continue
+            except Exception as e:
+                # print(f"❌ Error con {sep}/{encoding}: {str(e)[:50]}...")
+                continue
+        if df is not None:
             break
-        except UnicodeDecodeError:
-            print(f"❌ Error con {encoding}")
-            continue
-        except Exception as e:
-            print(f"❌ Error inesperado con {encoding}: {str(e)[:50]}...")
-            continue
     
     if df is None:
-        print("❌ No se pudo cargar el archivo con ninguna codificación estándar")
-        print("Intentando con encoding='latin-1' y manejo de errores...")
-        df = pd.read_csv(file_path, encoding='latin-1', encoding_errors='replace')
+        print("❌ No se pudo cargar el archivo con ninguna combinación estándar")
+        print("Intentando con encoding='latin-1', sep=',' y manejo de errores...")
+        df = pd.read_csv(file_path, encoding='latin-1', sep=',', encoding_errors='replace')
     
     print(f"Dataset cargado: {df.shape[0]:,} filas, {df.shape[1]} columnas")
     return df
@@ -67,6 +79,10 @@ def create_target_variable(df):
         pd.DataFrame: Dataset con variable objetivo agregada
     """
     print("Creando variable objetivo 'demora'...")
+    # Asegurar que las columnas existan
+    if 'Days for shipping (real)' not in df.columns or 'Days for shipment (scheduled)' not in df.columns:
+        raise ValueError("Faltan columnas necesarias para crear la variable objetivo")
+
     df['demora'] = (df['Days for shipping (real)'] > df['Days for shipment (scheduled)']).astype(int)
     
     # Mostrar distribución
@@ -99,16 +115,36 @@ def clean_data(df):
         'Product Image',
         # Fuga directa de información (conocidas solo después del resultado)
         'Days for shipping (real)',
+        'Days for shipment (scheduled)',  # Usado directamente para crear la variable objetivo
         'Late_delivery_risk',
         'Order Status',
         'Delivery Status',
         'Shipping Date (Actual)',
         # Campos de fecha reales posteriores al envío
-        'Shipping Date (DateOrders)',  # por si existe esta variante
+        'Shipping Date (DateOrders)',  # Variante Capitalizada
+        'shipping date (DateOrders)',  # Variante minúscula (CRÍTICO: Fuga de información)
         # Identificadores de alta cardinalidad (no predictivos)
         'Order Id', 'Order Item Id', 'Order Item Cardprod Id', 'Product Card Id',
         'Product Category Id', 'Customer Id', 'Order Customer Id'
     ]
+    
+    # Extraer características de fecha antes de eliminar columnas
+    if 'order date (DateOrders)' in df.columns:
+        print("Extrayendo características de fecha de 'order date (DateOrders)'...")
+        # Convertir a datetime si no lo es
+        df['order_date'] = pd.to_datetime(df['order date (DateOrders)'], errors='coerce')
+        
+        # Extraer componentes
+        df['order_year'] = df['order_date'].dt.year
+        df['order_month'] = df['order_date'].dt.month
+        df['order_day'] = df['order_date'].dt.day
+        df['order_weekday'] = df['order_date'].dt.dayofweek
+        df['order_hour'] = df['order_date'].dt.hour
+        
+        # Eliminar columna temporal y original
+        df.drop(columns=['order_date'], inplace=True)
+        columns_to_drop.append('order date (DateOrders)')
+        print("Características de fecha extraídas: year, month, day, weekday, hour")
     
     # Filtrar solo las que existen
     existing_columns_to_drop = [col for col in columns_to_drop if col in df.columns]
@@ -188,8 +224,9 @@ def handle_outliers(df):
     print("Tratando outliers...")
     
     # Variables numéricas para análisis de outliers
+    # Nota: 'Days for shipping (real)' y 'Days for shipment (scheduled)' se eliminan
+    # en clean_data() para evitar fuga de información, por lo que no se procesan aquí
     numeric_cols = ['Sales', 'Order Item Quantity', 'Benefit per order', 
-                    'Days for shipping (real)', 'Days for shipment (scheduled)',
                     'Order Item Product Price', 'Order Item Total']
     
     # Filtrar solo las que existen

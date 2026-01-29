@@ -40,6 +40,11 @@ def load_processed_data(data_dir='data/processed'):
     print(f"Conjunto de entrenamiento: {X_train.shape}")
     print(f"Conjunto de prueba: {X_test.shape}")
     
+    # Mostrar distribución de clases
+    print(f"\nDistribución de clases en entrenamiento:")
+    print(f"  A Tiempo (0): {(y_train == 0).sum()} ({(y_train == 0).mean()*100:.2f}%)")
+    print(f"  Con Demora (1): {(y_train == 1).sum()} ({(y_train == 1).mean()*100:.2f}%)")
+    
     return X_train, X_test, y_train, y_test
 
 def optimize_svm_hyperparameters(X_train, y_train, cv_folds=3, n_iter=20, random_state=42):
@@ -65,8 +70,9 @@ def optimize_svm_hyperparameters(X_train, y_train, cv_folds=3, n_iter=20, random
         'gamma': ['scale', 'auto', 0.1, 0.01, 0.001]
     }
     
-    # Crear modelo base
-    svm = SVC(random_state=random_state)
+    # Crear modelo base con class_weight='balanced' para manejar desbalance de clases
+    # probability=True permite usar predict_proba() para métricas como ROC AUC
+    svm = SVC(random_state=random_state, class_weight='balanced', probability=True)
     
     # Configurar validación cruzada estratificada
     cv = StratifiedKFold(n_splits=cv_folds, shuffle=True, random_state=random_state)
@@ -111,7 +117,9 @@ def train_svm_model(X_train, y_train, best_params, random_state=42):
     print("Entrenando modelo SVM con mejores hiperparámetros...")
     
     # Crear modelo con mejores parámetros
-    svm_model = SVC(**best_params)
+    # Asegurar que class_weight='balanced' y probability=True estén presentes
+    # probability=True permite usar predict_proba() para métricas como ROC AUC
+    svm_model = SVC(**best_params, class_weight='balanced', probability=True)
     if 'random_state' not in best_params:
         svm_model.set_params(random_state=random_state)
     
@@ -135,18 +143,31 @@ def evaluate_svm_model(model, X_test, y_test):
     """
     print("Evaluando modelo SVM...")
     
+    # Mostrar distribución de clases real
+    print(f"\nDistribución de clases en conjunto de prueba:")
+    print(f"  A Tiempo (0): {(y_test == 0).sum()} ({(y_test == 0).mean()*100:.2f}%)")
+    print(f"  Con Demora (1): {(y_test == 1).sum()} ({(y_test == 1).mean()*100:.2f}%)")
+    
     # Realizar predicciones
     y_pred = model.predict(X_test)
     
+    # Mostrar distribución de predicciones
+    print(f"\nDistribución de predicciones:")
+    print(f"  A Tiempo (0): {(y_pred == 0).sum()} ({(y_pred == 0).mean()*100:.2f}%)")
+    print(f"  Con Demora (1): {(y_pred == 1).sum()} ({(y_pred == 1).mean()*100:.2f}%)")
+    
     # Calcular métricas
     from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+    
+    # Obtener probabilidades para ROC AUC (requiere probability=True en el modelo)
+    y_proba = model.predict_proba(X_test)[:, 1]
     
     metrics = {
         'accuracy': accuracy_score(y_test, y_pred),
         'precision': precision_score(y_test, y_pred),
         'recall': recall_score(y_test, y_pred),
         'f1_score': f1_score(y_test, y_pred),
-        'roc_auc': roc_auc_score(y_test, y_pred)
+        'roc_auc': roc_auc_score(y_test, y_proba)  # Usar probabilidades, no predicciones
     }
     
     # Mostrar métricas
