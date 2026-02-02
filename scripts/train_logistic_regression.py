@@ -1,8 +1,8 @@
 """
-Script de Entrenamiento - SVM (Support Vector Machine)
-======================================================
+Script de Entrenamiento - Regresión Logística
+==============================================
 
-Este script entrena y optimiza un modelo SVM para predecir demoras
+Este script entrena y optimiza un modelo de Regresión Logística para predecir demoras
 en entregas utilizando validación cruzada y búsqueda de hiperparámetros.
 
 Autor: Sistema de Predicción de Demoras
@@ -13,8 +13,8 @@ import pandas as pd
 import numpy as np
 import joblib
 import json
-from sklearn.svm import SVC
-from sklearn.model_selection import GridSearchCV, StratifiedKFold, RandomizedSearchCV
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import GridSearchCV, StratifiedKFold
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.impute import SimpleImputer
 import os
@@ -46,7 +46,7 @@ def load_processed_data(data_dir='data/processed'):
     print(f"  A Tiempo (0): {(y_train == 0).sum()} ({(y_train == 0).mean()*100:.2f}%)")
     print(f"  Con Demora (1): {(y_train == 1).sum()} ({(y_train == 1).mean()*100:.2f}%)")
     
-    # Verificar y manejar valores NaN (SVM no acepta NaN)
+    # Verificar y manejar valores NaN
     nan_train = X_train.isna().sum().sum()
     nan_test = X_test.isna().sum().sum()
     
@@ -62,63 +62,60 @@ def load_processed_data(data_dir='data/processed'):
     
     return X_train, X_test, y_train, y_test
 
-def optimize_svm_hyperparameters(X_train, y_train, cv_folds=3, n_iter=20, random_state=42):
+def optimize_logistic_regression_hyperparameters(X_train, y_train, cv_folds=3, random_state=42):
     """
-    Optimizar hiperparámetros del modelo SVM usando RandomizedSearchCV.
+    Optimizar hiperparámetros del modelo de Regresión Logística usando GridSearchCV.
     
     Args:
         X_train: Características de entrenamiento
         y_train: Variable objetivo de entrenamiento
         cv_folds (int): Número de folds para validación cruzada
-        n_iter (int): Número de iteraciones para búsqueda aleatoria
         random_state (int): Semilla para reproducibilidad
         
     Returns:
         dict: Mejores hiperparámetros encontrados
     """
-    print("Optimizando hiperparámetros para SVM...")
+    print("Optimizando hiperparámetros para Regresión Logística...")
     
-    # Definir distribución de parámetros para búsqueda aleatoria
-    param_distributions = {
-        'C': [0.1, 1, 10, 100],
-        'kernel': ['linear', 'rbf', 'poly'],
-        'gamma': ['scale', 'auto', 0.1, 0.01, 0.001]
+    # Definir parámetros para búsqueda
+    param_grid = {
+        'C': [0.001, 0.01, 0.1, 1, 10, 100],
+        'penalty': ['l1', 'l2'],
+        'solver': ['liblinear', 'saga'],
+        'max_iter': [200, 500, 1000]
     }
     
     # Crear modelo base con class_weight='balanced' para manejar desbalance de clases
-    # probability=True permite usar predict_proba() para métricas como ROC AUC
-    svm = SVC(random_state=random_state, class_weight='balanced', probability=True)
+    log_reg = LogisticRegression(random_state=random_state, class_weight='balanced')
     
     # Configurar validación cruzada estratificada
     cv = StratifiedKFold(n_splits=cv_folds, shuffle=True, random_state=random_state)
     
-    # Configurar RandomizedSearchCV (mucho más rápido que GridSearchCV)
-    random_search = RandomizedSearchCV(
-        estimator=svm,
-        param_distributions=param_distributions,
-        n_iter=n_iter,  # Solo prueba 20 combinaciones aleatorias
+    # Configurar GridSearchCV
+    grid_search = GridSearchCV(
+        estimator=log_reg,
+        param_grid=param_grid,
         cv=cv,
         scoring='f1',
-        n_jobs=1,
-        random_state=random_state,
+        n_jobs=-1,
         verbose=1
     )
     
     # Ejecutar búsqueda
-    print("Ejecutando búsqueda aleatoria de hiperparámetros...")
-    random_search.fit(X_train, y_train)
+    print("Ejecutando búsqueda de hiperparámetros...")
+    grid_search.fit(X_train, y_train)
     
     # Mostrar resultados
-    print(f"Mejor puntuación F1: {random_search.best_score_:.4f}")
+    print(f"Mejor puntuación F1: {grid_search.best_score_:.4f}")
     print("Mejores hiperparámetros:")
-    for param, value in random_search.best_params_.items():
+    for param, value in grid_search.best_params_.items():
         print(f"  {param}: {value}")
     
-    return random_search.best_params_, random_search.best_score_
+    return grid_search.best_params_, grid_search.best_score_
 
-def train_svm_model(X_train, y_train, best_params, random_state=42):
+def train_logistic_regression_model(X_train, y_train, best_params, random_state=42):
     """
-    Entrenar el modelo SVM con los mejores hiperparámetros.
+    Entrenar el modelo de Regresión Logística con los mejores hiperparámetros.
     
     Args:
         X_train: Características de entrenamiento
@@ -127,26 +124,26 @@ def train_svm_model(X_train, y_train, best_params, random_state=42):
         random_state (int): Semilla para reproducibilidad
         
     Returns:
-        SVC: Modelo entrenado
+        LogisticRegression: Modelo entrenado
     """
-    print("Entrenando modelo SVM con mejores hiperparámetros...")
+    print("Entrenando modelo de Regresión Logística con mejores hiperparámetros...")
     
     # Crear modelo con mejores parámetros
-    # Asegurar que class_weight='balanced' y probability=True estén presentes
-    # probability=True permite usar predict_proba() para métricas como ROC AUC
-    svm_model = SVC(**best_params, class_weight='balanced', probability=True)
-    if 'random_state' not in best_params:
-        svm_model.set_params(random_state=random_state)
+    log_reg_model = LogisticRegression(
+        **best_params,
+        random_state=random_state,
+        class_weight='balanced'
+    )
     
     # Entrenar modelo
-    svm_model.fit(X_train, y_train)
+    log_reg_model.fit(X_train, y_train)
     
-    print("Modelo SVM entrenado exitosamente")
-    return svm_model
+    print("Modelo de Regresión Logística entrenado exitosamente")
+    return log_reg_model
 
-def evaluate_svm_model(model, X_test, y_test):
+def evaluate_logistic_regression_model(model, X_test, y_test):
     """
-    Evaluar el modelo SVM en el conjunto de prueba.
+    Evaluar el modelo de Regresión Logística en el conjunto de prueba.
     
     Args:
         model: Modelo entrenado
@@ -156,7 +153,7 @@ def evaluate_svm_model(model, X_test, y_test):
     Returns:
         dict: Métricas de evaluación
     """
-    print("Evaluando modelo SVM...")
+    print("Evaluando modelo de Regresión Logística...")
     
     # Mostrar distribución de clases real
     print(f"\nDistribución de clases en conjunto de prueba:")
@@ -174,7 +171,7 @@ def evaluate_svm_model(model, X_test, y_test):
     # Calcular métricas
     from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
     
-    # Obtener probabilidades para ROC AUC (requiere probability=True en el modelo)
+    # Obtener probabilidades para ROC AUC
     y_proba = model.predict_proba(X_test)[:, 1]
     
     metrics = {
@@ -182,7 +179,7 @@ def evaluate_svm_model(model, X_test, y_test):
         'precision': precision_score(y_test, y_pred),
         'recall': recall_score(y_test, y_pred),
         'f1_score': f1_score(y_test, y_pred),
-        'roc_auc': roc_auc_score(y_test, y_proba)  # Usar probabilidades, no predicciones
+        'roc_auc': roc_auc_score(y_test, y_proba)
     }
     
     # Mostrar métricas
@@ -207,72 +204,103 @@ def evaluate_svm_model(model, X_test, y_test):
     
     return metrics
 
-def save_svm_model(model, best_params, metrics, model_dir='models', results_dir='data/results'):
+def get_feature_coefficients(model, feature_names):
     """
-    Guardar el modelo SVM y sus resultados.
+    Obtener coeficientes de características del modelo de Regresión Logística.
+    
+    Args:
+        model: Modelo entrenado
+        feature_names: Lista de nombres de características
+        
+    Returns:
+        pd.DataFrame: DataFrame con coeficientes de características
+    """
+    print("Obteniendo coeficientes de características...")
+    
+    # Obtener coeficientes
+    coefficients = model.coef_[0]
+    
+    # Crear DataFrame con coeficientes (ordenamos por valor absoluto)
+    feature_coef = pd.DataFrame({
+        'feature': feature_names,
+        'coefficient': coefficients,
+        'abs_coefficient': np.abs(coefficients)
+    }).sort_values('abs_coefficient', ascending=False)
+    
+    print("Top 10 características más influyentes:")
+    print(feature_coef[['feature', 'coefficient']].head(10))
+    
+    return feature_coef
+
+def save_logistic_regression_model(model, best_params, metrics, feature_coef, 
+                                   model_dir='models', results_dir='data/results'):
+    """
+    Guardar el modelo de Regresión Logística y sus resultados.
     
     Args:
         model: Modelo entrenado
         best_params (dict): Mejores hiperparámetros
         metrics (dict): Métricas de evaluación
+        feature_coef (pd.DataFrame): Coeficientes de características
         model_dir (str): Directorio para guardar el modelo
         results_dir (str): Directorio para guardar resultados
     """
-    print("Guardando modelo SVM y resultados...")
+    print("Guardando modelo de Regresión Logística y resultados...")
     
     # Crear directorios si no existen
     os.makedirs(model_dir, exist_ok=True)
     os.makedirs(results_dir, exist_ok=True)
     
     # Guardar modelo
-    joblib.dump(model, f'{model_dir}/svm_model.pkl')
-    print(f"Modelo guardado en: {model_dir}/svm_model.pkl")
+    joblib.dump(model, f'{model_dir}/logistic_regression_model.pkl')
+    print(f"Modelo guardado en: {model_dir}/logistic_regression_model.pkl")
     
     # Guardar hiperparámetros
-    with open(f'{results_dir}/svm_params.json', 'w') as f:
+    with open(f'{results_dir}/logistic_regression_params.json', 'w') as f:
         json.dump(best_params, f, indent=2)
-    print(f"Hiperparámetros guardados en: {results_dir}/svm_params.json")
+    print(f"Hiperparámetros guardados en: {results_dir}/logistic_regression_params.json")
     
     # Guardar métricas
-    with open(f'{results_dir}/svm_metrics.json', 'w') as f:
+    with open(f'{results_dir}/logistic_regression_metrics.json', 'w') as f:
         json.dump(metrics, f, indent=2)
-    print(f"Métricas guardadas en: {results_dir}/svm_metrics.json")
+    print(f"Métricas guardadas en: {results_dir}/logistic_regression_metrics.json")
+    
+    # Guardar coeficientes de características
+    feature_coef.to_csv(f'{results_dir}/logistic_regression_coefficients.csv', index=False)
+    print(f"Coeficientes guardados en: {results_dir}/logistic_regression_coefficients.csv")
 
 def main():
     """
-    Función principal para entrenar el modelo SVM.
+    Función principal para entrenar el modelo de Regresión Logística.
     """
     print("="*60)
-    print("ENTRENAMIENTO DEL MODELO SVM")
+    print("ENTRENAMIENTO DEL MODELO DE REGRESIÓN LOGÍSTICA")
     print("="*60)
     
     # 1. Cargar datos procesados
     X_train, X_test, y_train, y_test = load_processed_data()
     
     # 2. Optimizar hiperparámetros
-    if len(X_train) > 10000:
-        print(f"Dataset grande ({len(X_train)} muestras). Muestreando para SVM...")
-        sample_size = 10000
-        X_train_sample = X_train.sample(n=sample_size, random_state=42)
-        y_train_sample = y_train.loc[X_train_sample.index]
-        best_params, best_score = optimize_svm_hyperparameters(X_train_sample, y_train_sample)
-    else:
-        best_params, best_score = optimize_svm_hyperparameters(X_train, y_train)
+    best_params, best_score = optimize_logistic_regression_hyperparameters(X_train, y_train)
     
     # 3. Entrenar modelo con mejores parámetros
-    svm_model = train_svm_model(X_train, y_train, best_params)
+    log_reg_model = train_logistic_regression_model(X_train, y_train, best_params)
     
     # 4. Evaluar modelo
-    metrics = evaluate_svm_model(svm_model, X_test, y_test)
+    metrics = evaluate_logistic_regression_model(log_reg_model, X_test, y_test)
     
-    # 5. Guardar modelo y resultados
-    save_svm_model(svm_model, best_params, metrics)
+    # 5. Obtener coeficientes de características
+    feature_names = X_train.columns.tolist()
+    feature_coef = get_feature_coefficients(log_reg_model, feature_names)
+    
+    # 6. Guardar modelo y resultados
+    save_logistic_regression_model(log_reg_model, best_params, metrics, feature_coef)
     
     print("\n" + "="*60)
-    print("ENTRENAMIENTO SVM COMPLETADO EXITOSAMENTE")
+    print("ENTRENAMIENTO REGRESIÓN LOGÍSTICA COMPLETADO EXITOSAMENTE")
     print("="*60)
     
-    return svm_model, best_params, metrics
+    return log_reg_model, best_params, metrics, feature_coef
 
 if __name__ == "__main__":
-    model, params, metrics = main()
+    model, params, metrics, feature_coef = main()

@@ -1,8 +1,9 @@
-pandas
-numpy
+pandas>=2.1.0
+numpy>=2.0.0
 matplotlib
 seaborn
 scikit-learn
 xgboost
 jupyter
 joblib
+pygments
