@@ -1,0 +1,6 @@
+{
+  "C": 0.001,
+  "max_iter": 200,
+  "penalty": "l1",
+  "solver": "liblinear"
+}

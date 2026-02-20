@@ -1,0 +1,93 @@
+feature,coefficient,abs_coefficient
+Shipping Mode_First Class,1.7467211601853438,1.7467211601853438
+Shipping Mode_Same Day,-1.6359649349359249,1.6359649349359249
+Days for shipment (scheduled),-0.8289778913905087,0.8289778913905087
+Shipping Mode_Second Class,0.3327289523111925,0.3327289523111925
+Department Name_Discs Shop,0.0,0.0
+Department Name_Fan Shop,0.0,0.0
+Order Country_India,0.0,0.0
+Order Country_Honduras,0.0,0.0
+Order Country_Francia,0.0,0.0
+Order Country_España,0.0,0.0
+Order Country_El Salvador,0.0,0.0
+Order Country_China,0.0,0.0
+Order Country_Brasil,0.0,0.0
+Order Country_Australia,0.0,0.0
+Order Country_Alemania,0.0,0.0
+Market_USCA,0.0,0.0
+Order Country_Indonesia,0.0,0.0
+Market_LATAM,0.0,0.0
+Market_Europe,0.0,0.0
+Market_Africa,0.0,0.0
+Department Name_Outdoors,0.0,0.0
+Department Name_Golf,0.0,0.0
+Department Name_Fitness,0.0,0.0
+Market_Pacific Asia,0.0,0.0
+Order Country_México,0.0,0.0
+Order Country_Italia,0.0,0.0
+Order Region_South Asia,0.0,0.0
+Product Name_Other,0.0,0.0
+Order Region_Western Europe,0.0,0.0
+Order Region_West of USA ,0.0,0.0
+Order Region_West Asia,0.0,0.0
+Order Region_US Center ,0.0,0.0
+Order Region_Southern Europe,0.0,0.0
+Order Region_Southeast Asia,0.0,0.0
+Order Region_South of  USA ,0.0,0.0
+Order Region_South America,0.0,0.0
+Order Country_Other,0.0,0.0
+Order Region_Other,0.0,0.0
+Order Region_Northern Europe,0.0,0.0
+Order Region_Eastern Asia,0.0,0.0
+Order Region_East of USA,0.0,0.0
+Order Region_Central America,0.0,0.0
+Order Region_Caribbean,0.0,0.0
+Order Country_República Dominicana,0.0,0.0
+Order Country_Reino Unido,0.0,0.0
+Department Name_Apparel,0.0,0.0
+Unnamed: 0,0.0,0.0
+Customer State_PA,0.0,0.0
+Category Name_Fishing,0.0,0.0
+Category Name_Cleats,0.0,0.0
+Category Name_Cardio Equipment,0.0,0.0
+Category Name_Camping & Hiking,0.0,0.0
+Type_TRANSFER,0.0,0.0
+Type_PAYMENT,0.0,0.0
+Type_DEBIT,0.0,0.0
+Type_CASH,0.0,0.0
+order_weekday,0.0,0.0
+order_day,0.0,0.0
+order_month,0.0,0.0
+order_year,0.0,0.0
+Order Item Quantity,0.0,0.0
+Order Item Profit Ratio,0.0,0.0
+Order Item Product Price,0.0,0.0
+Order Item Discount,0.0,0.0
+Longitude,0.0,0.0
+Latitude,0.0,0.0
+Sales per customer,0.0,0.0
+Benefit per order,0.0,0.0
+Category Name_Electronics,0.0,0.0
+Category Name_Indoor/Outdoor Games,0.0,0.0
+Customer State_Other,0.0,0.0
+Category Name_Men's Footwear,0.0,0.0
+Customer State_OH,0.0,0.0
+Customer State_NY,0.0,0.0
+Customer State_NJ,0.0,0.0
+Customer State_NC,0.0,0.0
+Customer State_MI,0.0,0.0
+Customer State_MD,0.0,0.0
+Customer State_IL,0.0,0.0
+Customer State_GA,0.0,0.0
+Customer State_FL,0.0,0.0
+Customer State_CO,0.0,0.0
+Customer State_CA,0.0,0.0
+Customer State_AZ,0.0,0.0
+Customer Segment_Home Office,0.0,0.0
+Customer Segment_Corporate,0.0,0.0
+Customer Segment_Consumer,0.0,0.0
+Category Name_Women's Apparel,0.0,0.0
+Category Name_Water Sports,0.0,0.0
+Category Name_Shop By Sport,0.0,0.0
+Category Name_Other,0.0,0.0
+Customer State_TX,0.0,0.0
