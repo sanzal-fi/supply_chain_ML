@@ -20,16 +20,18 @@ trabajo_practico/
 ├── notebooks/
 │   └── 01_analisis_exploratorio.ipynb    # Análisis exploratorio completo
 ├── scripts/
-│   ├── data_preprocessing.py              # Preprocesamiento de datos
-│   ├── train_knn.py                       # Entrenamiento KNN
-│   ├── train_svm.py                       # Entrenamiento SVM
-│   ├── train_xgboost.py                   # Entrenamiento XGBoost
-│   └── evaluate_models.py                 # Evaluación y comparación
+│   ├── data_preprocessing.py             # Preprocesamiento de datos
+│   ├── data_preprocessing_corrected.py   # Preprocesamiento corregido
+│   ├── train_knn.py                      # Entrenamiento KNN
+│   ├── train_logistic_regression.py      # Entrenamiento Regresión Logística
+│   ├── train_xgboost.py                  # Entrenamiento XGBoost
+│   ├── evaluate_models.py                # Evaluación básica
+│   └── evaluate_models_improved.py       # Evaluación mejorada con métricas de negocio
 ├── data/
-│   ├── processed/                         # Datos preprocesados
-│   └── results/                           # Resultados y métricas
-├── models/                                # Modelos entrenados
-└── requirements.txt                       # Dependencias
+│   ├── processed/                        # Datos preprocesados
+│   └── results/                          # Resultados y métricas
+├── models/                               # Modelos entrenados
+└── requirements.txt                      # Dependencias
 ```
 
 ## 🚀 Instalación
@@ -64,7 +66,7 @@ trabajo_practico/
 - Identificación de variables relevantes
 
 ### 2. Preprocesamiento de Datos
-**Archivo**: `scripts/data_preprocessing.py`
+**Archivo**: `scripts/data_preprocessing.py` o `scripts/data_preprocessing_corrected.py`
 
 ```bash
 python scripts/data_preprocessing.py
@@ -84,9 +86,9 @@ python scripts/data_preprocessing.py
 python scripts/train_knn.py
 ```
 
-#### SVM (Support Vector Machine)
+#### Regresión Logística
 ```bash
-python scripts/train_svm.py
+python scripts/train_logistic_regression.py
 ```
 
 #### XGBoost (Extreme Gradient Boosting)
@@ -96,15 +98,15 @@ python scripts/train_xgboost.py
 
 **Características de entrenamiento**:
 - Búsqueda de hiperparámetros con GridSearchCV
-- Validación cruzada estratificada (5-fold)
+- Validación cruzada estratificada (3-5 folds)
 - Optimización basada en F1-Score
 - Guardado automático de modelos y parámetros
 
 ### 4. Evaluación y Comparación
-**Archivo**: `scripts/evaluate_models.py`
+**Archivo**: `scripts/evaluate_models_improved.py`
 
 ```bash
-python scripts/evaluate_models.py
+python scripts/evaluate_models_improved.py
 ```
 
 **Métricas evaluadas**:
@@ -113,11 +115,15 @@ python scripts/evaluate_models.py
 - Recall
 - F1-Score
 - AUC-ROC
+- Métricas de negocio (costo-beneficio)
 
 **Visualizaciones generadas**:
 - Matrices de confusión
 - Curvas ROC
+- Curvas Precision-Recall
+- Curvas de calibración
 - Comparación de métricas
+- Métricas de negocio
 - Reportes detallados
 
 ## 📈 Resultados
@@ -127,9 +133,15 @@ Los resultados se guardan automáticamente en `data/results/`:
 - `model_comparison.csv`: Tabla comparativa de métricas
 - `confusion_matrices_comparison.png`: Matrices de confusión
 - `roc_curves_comparison.png`: Curvas ROC
+- `precision_recall_curves.png`: Curvas Precision-Recall
+- `calibration_curves.png`: Curvas de calibración
 - `metrics_comparison.png`: Gráfico de comparación
+- `business_metrics_comparison.png`: Métricas de negocio
 - `evaluation_report.txt`: Reporte final
 - `xgboost_feature_importance.csv`: Importancia de características (XGBoost)
+- `logistic_regression_coefficients.csv`: Coeficientes del modelo (Regresión Logística)
+- `*_metrics.json`: Métricas individuales por modelo
+- `*_params.json`: Hiperparámetros optimizados por modelo
 
 ## 🎯 Algoritmos Utilizados
 
@@ -138,10 +150,10 @@ Los resultados se guardan automáticamente en `data/results/`:
 - **Ventajas**: Simple, no paramétrico, bueno para datos no lineales
 - **Desventajas**: Computacionalmente costoso, sensible a outliers
 
-### 2. Support Vector Machine (SVM)
-- **Hiperparámetros optimizados**: C, kernel, gamma
-- **Ventajas**: Efectivo en espacios de alta dimensión, robusto
-- **Desventajas**: Lento con datasets grandes, sensible a escalado
+### 2. Regresión Logística
+- **Hiperparámetros optimizados**: C, penalty, solver
+- **Ventajas**: Interpretable, rápido, proporciona probabilidades calibradas
+- **Desventajas**: Asume relación lineal, puede subajustar en problemas complejos
 
 ### 3. XGBoost (Extreme Gradient Boosting)
 - **Hiperparámetros optimizados**: n_estimators, max_depth, learning_rate, subsample
@@ -155,7 +167,7 @@ Los resultados se guardan automáticamente en `data/results/`:
 import joblib
 
 # Cargar modelo
-model = joblib.load('models/knn_model.pkl')
+model = joblib.load('models/logistic_regression_model.pkl')
 
 # Cargar scaler
 scaler = joblib.load('data/processed/scaler.pkl')
@@ -206,7 +218,7 @@ Basado en el análisis exploratorio, los factores más relevantes para predecir 
 
 - **Semilla aleatoria**: `random_state=42` en todas las operaciones
 - **División estratificada**: Mantiene proporción de clases
-- **Validación cruzada**: 5-fold estratificada
+- **Validación cruzada**: 3-5 folds estratificada
 - **Escalado consistente**: Mismo scaler para entrenamiento y prueba
 
 ## 📝 Notas Técnicas
@@ -228,4 +240,3 @@ Este proyecto es de uso académico y educativo.
 ---
 
 **Desarrollado con ❤️ para la comunidad de Ciencia de Datos**
-# supply_chain_tp
